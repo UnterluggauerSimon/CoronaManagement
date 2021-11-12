@@ -1,6 +1,7 @@
 package at.campus02.unterluggauer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class IncidenceDemoApp
 {
@@ -33,10 +34,29 @@ public class IncidenceDemoApp
         System.out.println("countTotalIncidences = " + countTotalIncidences);
 
         countTotalIncidences = 0;
-        for (Incidence Incidence: recordValues)
+        for (Incidence Incidence : recordValues)
         {
             countTotalIncidences += Incidence.getNumber();
         }
         System.out.println("countTotalIncidences = " + countTotalIncidences);
+
+        HashMap<String, Integer> totalIncidencesState = new HashMap<>();
+        for (Incidence incidence : recordValues)
+        {
+//            1. Ist mein Key bereits in der Liste
+//                2. wenn nein, muss ich den Key aufnehmen
+//                3. wenn ja, muss ich den Wert auslesen, summieren und neu ablegen
+
+            if (totalIncidencesState.containsKey(incidence.getState()))
+            {
+                int currentValue = totalIncidencesState.get(incidence.getState());
+                currentValue += incidence.getNumber();
+                totalIncidencesState.put(incidence.getState(), currentValue);
+            }
+            else
+            {
+                totalIncidencesState.put(incidence.getState(), incidence.getNumber());
+            }
+        }
     }
 }
