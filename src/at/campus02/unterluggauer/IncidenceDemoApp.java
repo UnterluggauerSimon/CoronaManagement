@@ -58,5 +58,6 @@ public class IncidenceDemoApp
                 totalIncidencesState.put(incidence.getState(), incidence.getNumber());
             }
         }
+        System.out.println("totalIncidencesState = " + totalIncidencesState);
     }
 }
